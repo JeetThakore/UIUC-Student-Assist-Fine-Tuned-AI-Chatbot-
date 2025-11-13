@@ -2,9 +2,6 @@
 
 A fine-tuned **FLAN-T5 chatbot** that helps Illinois students get instant, context-aware answers about campus life : powered by **LangChain**, **FAISS**, and **Streamlit**.
 
----
-
-
 <img width="1490" height="806" alt="image" src="https://github.com/user-attachments/assets/9a231025-35b4-4baa-8a2d-3ac0326b18b8" />
 
 ## Overview
