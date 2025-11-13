@@ -275,7 +275,7 @@ def load_llm():
     try:
         pipe = pipeline(
             "text2text-generation",
-            model="./fine_tuned_flan_uiuc_20min",  # Use your fine-tuned model
+            model="./fine_tuned_flan_uiuc_20min",  # my very own fine tuned model yippee !!
             max_new_tokens=250,
             temperature=0.5,
             do_sample=True,
@@ -509,3 +509,4 @@ def process_question(question):
 
 if __name__ == "__main__":
     main()
+
