@@ -1,4 +1,4 @@
-# UIUC Student Assist — Fine-Tuned AI Chatbot for Campus Information
+# UIUC Student Assist : A Fine-Tuned AI Chatbot for Campus Information
 
 A fine-tuned **FLAN-T5 chatbot** that helps Illinois students get instant, context-aware answers about campus life : powered by **LangChain**, **FAISS**, and **Streamlit**.
 
