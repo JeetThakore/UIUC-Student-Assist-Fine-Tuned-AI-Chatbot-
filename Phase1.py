@@ -6,7 +6,7 @@ from langchain_community.vectorstores import FAISS
 
 
 
-# Step 1: Load raw PDF(s)
+# Step 1: Load raw PDF
 DATA_PATH=r"C:\Users\91940\Downloads\Database_Dump\Medibot - Extension\Data"
 def load_pdf_files(data):
     loader = DirectoryLoader(data,
@@ -39,4 +39,5 @@ embedding_model=get_embedding_model()
 # Step 4: Store embeddings in FAISS
 DB_FAISS_PATH="vectorstore/db_faiss"
 db=FAISS.from_documents(text_chunks, embedding_model)
+
 db.save_local(DB_FAISS_PATH)
