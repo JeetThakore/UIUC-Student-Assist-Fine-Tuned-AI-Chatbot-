@@ -1,4 +1,4 @@
-# ====================== Quick but Real Fine-Tuning Script ======================
+
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, Trainer, TrainingArguments, DataCollatorForSeq2Seq
 from datasets import Dataset
 import torch
@@ -8,21 +8,21 @@ from tqdm import tqdm
 
 DATA_PATH = r"C:\Users\91940\Downloads\Database_Dump\Medibot - Extension\Data"
 
-print("📂 Loading PDFs...")
+print("Loading PDFs...")
 loader = DirectoryLoader(DATA_PATH, glob="*.pdf", loader_cls=PyPDFLoader)
 documents = loader.load()
 print(f"✅ Loaded {len(documents)} PDFs")
 
-print("✂️ Splitting PDFs into chunks...")
+print("Splitting PDFs into chunks...")
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
 text_chunks = text_splitter.split_documents(documents)
 print(f"✅ Created {len(text_chunks)} text chunks")
 
 # Take a slightly larger subset
 text_chunks = text_chunks[:30]  # 30 chunks
-print(f"⚡ Using {len(text_chunks)} chunks for fine-tuning (~20 mins)")
+print(f"Using {len(text_chunks)} chunks for fine-tuning (~20 mins)")
 
-print("📝 Preparing training data...")
+print("Preparing training data...")
 def prepare_training_data(text_chunks):
     training_data = []
     for chunk in tqdm(text_chunks, desc="Generating QA pairs"):
@@ -42,7 +42,7 @@ dataset = Dataset.from_dict({
     "answer": [d["answer"] for d in training_data]
 })
 
-print("🤖 Loading model and tokenizer...")
+print("Loading model and tokenizer...")
 model_name = "google/flan-t5-base"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
@@ -85,12 +85,13 @@ trainer = Trainer(
     data_collator=data_collator,
 )
 
-print("🚀 Starting fine-tuning (~20 mins expected)...")
+print("Starting fine-tuning (~20 mins expected)...")
 trainer.train()
 print("✅ Fine-tuning complete")
 
-print("💾 Saving fine-tuned model...")
+print(" Saving fine-tuned model...")
 model.save_pretrained("./fine_tuned_flan_uiuc_20min")
 tokenizer.save_pretrained("./fine_tuned_flan_uiuc_20min")
-print("🎉 Model saved at './fine_tuned_flan_uiuc_20min'")
-# ====================== End Script ======================
+print(" Model saved at './fine_tuned_flan_uiuc_20min'")
+
+
